@@ -1,36 +1,36 @@
+public class DecimalToBinary
+{
 
-import java.util.Random;
+    public static String toBinaryString(int decimal)
+    {
+        String result = "";
+        if (decimal == 0)
+        {
+            return "0";
+        }
+        while (decimal != 0)
+        {
 
-public class DecimalToBinary {
+            // Solution 0:
+            /*int modulo = decimal % 2;
+            if (modulo == 0) {
+                result += '0';
+            } else {
+                result += '1';
+            }*/
 
-	public static void main(String[] args) {
-		if (!DecimalToBinary.runUnitTests()) {
-			System.out.println("Failure");
-			return;
-		}
-		System.out.println("Success");
-	}
+            // Solution 1:
+            /*result += decimal % 2 == 0 ? '0' : '1';*/
 
-	public static String decimal2binary(int decimal) {
-		String result = "";
-		while (decimal != 0) {
-			result += String.valueOf(decimal % 2);
-			decimal /= 2;
-		}
-		return new StringBuffer(result).reverse().toString();
-	}
+            // Solution 2:
+            result += String.valueOf(decimal % 2);
 
-	public static boolean runUnitTests() {
-		Random randomGenerator = new Random();
-		for (int i = 0; i < 100; i++) {
-			int decimal = randomGenerator.nextInt(100);
-			String tested = DecimalToBinary.decimal2binary(decimal);
-			String expected = Integer.toBinaryString(decimal);
-			if (!tested.equals(expected)) {
-				System.err.println(Integer.toString(decimal)+": expected '"+expected+"' got '"+tested+"'");
-				return false;
-			}
-		}
-		return true;
-	}
+            decimal /= 2;
+        }
+        return new StringBuffer(result).reverse().toString();
+
+        // Solutions to prepend:
+        // result = myBit + result;
+        // result.insert(0,myBit);
+    }
 }
