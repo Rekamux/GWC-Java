@@ -18,6 +18,7 @@ public class ListLab
         test_append();
         test_insert();
         test_delete();
+        test_reverse();
     }
 
     /**
@@ -112,6 +113,46 @@ public class ListLab
             ptr.next = nextnext;
         }
         return head;
+    }
+
+    public static ListNode reverse( ListNode head )
+    {
+        return null; // TODO
+    }
+
+    public static void test_reverse() throws Exception
+    {
+        ListNode head = null;
+        ListNode reversedHead = null;
+        for( int i = 0; i < 5; i++ )
+        {
+            head = append( i, head );
+        }
+        for( int i = 4; i >= 0; i-- )
+        {
+            reversedHead = append( i, reversedHead );
+        }
+
+        int i = 0;
+        ListNode got = reverse( head );
+        while( got != null && reversedHead != null )
+        {
+            if( got.value != reversedHead.value )
+            {
+                throw new Exception( "DOH! " + i + ": expected "
+                    + reversedHead.value + ", got " + got.value );
+            }
+            got = got.next;
+            reversedHead = reversedHead.next;
+            i++;
+        }
+
+        if( i != 4 )
+        {
+            throw new Exception( "Got " + i + " elements, instead of 4" );
+        }
+
+        System.out.println( "YOU ROCK AT REVERSING LISTS!" );
     }
 
     ////////////////////////////////////////////////////////////////////////////
